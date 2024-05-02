@@ -6,7 +6,6 @@
             <thead>
                 <tr>
                     <th scope="col">No.</th>
-                    <th scope="col">id</th>
                     <th scope="col">Nama Aset</th>
                     <th scope="col">Buy</th>
                     <th scope="col">percentage</th>
@@ -18,7 +17,6 @@
                 @foreach($tickers as $key => $ticker)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $ticker["id"] }}</td>
                         <td><img class="mb-1" src="{{ $ticker['url_logo'] }}" alt="SVG Image" width="25" height="25" loading="lazy"> {{ $ticker['name'] }}</td>
                         <td>{{ Number::format($ticker['buy']) }}</td>
                         <td class="{{ $ticker['percentage'] < 0 ? "text-danger":"text-success" }}">{{ $ticker['percentage'] }}%</td>

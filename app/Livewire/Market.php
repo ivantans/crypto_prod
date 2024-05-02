@@ -21,12 +21,17 @@ class Market extends Component
         $response = Http::get("https://indodax.com/api/summaries");
         $this->data = $response->json();
         $this->tickers = $this->data["tickers"];
-        
         foreach($this->tickers as $key => $value){
             $tickerKey = str_replace("_", "", $key);
-            $price_24h = $this->data["prices_24h"][$tickerKey];
-            $percentage = round(((($this->tickers[$key]["last"] - $price_24h)/$price_24h)*100),2,0);
-            $this->tickers[$key]["percentage"] = $percentage;
+            if(!isset($this->data["prices_24h"][$tickerKey])){
+                $this->tickers[$key]["percentage"] = 0;
+            } else{
+                $price_24h = $this->data["prices_24h"][$tickerKey];
+                $percentage = round(((($this->tickers[$key]["last"] - $price_24h)/$price_24h)*100),2,0);
+                $this->tickers[$key]["percentage"] = $percentage;
+
+            }
+
         }
 
         if($allHasUrlLogo){

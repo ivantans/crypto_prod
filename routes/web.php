@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Alarm;
 use App\Livewire\Market;
 use App\Livewire\MarketDetail;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,5 @@ Route::get("/market/{id}", MarketDetail::class)->name("market.detail");
 Route::get("/test", function(){
     return view("test.test");
 });
+
+Route::post("/market/{id}/alarm", Alarm::class);
