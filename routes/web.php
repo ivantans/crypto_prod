@@ -3,6 +3,8 @@
 use App\Livewire\Alarm;
 use App\Livewire\Market;
 use App\Livewire\MarketDetail;
+use App\Mail\AlarmEmail;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +23,16 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get("/market", Market::class)->name("market.index");
-Route::get("/market/{id}", MarketDetail::class)->name("market.detail");
-Route::get("/test", function(){
-    return view("test.test");
+Route::post("/market/{c_id}/{c_name}", MarketDetail::class)->name("market.detail");
+Route::get("/", function(){
+    return redirect()->route('market.index');
 });
 
-Route::post("/market/{id}/alarm", Alarm::class);
+Route::get("/test", function(){
+    $response = Http::get("https://indodax.com/api/ticker/btcidr")->json();
+    dd($response["ticker"]["last"]);
+});
+
+Route::get("/mail", function(){
+    Mail::to("ivantanjaya77@gmail.com")->send(new AlarmEmail("test"));
+});

@@ -2,43 +2,53 @@
 
 namespace App\Livewire;
 
-use Illuminate\Support\Facades\Http;
+use App\Models\Alarm;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class MarketDetail extends Component
 {
-    protected $id;
-    protected $ticker = [];
-    protected $trade = [];
-    protected $depth = [];
+    public $c_id;
+
+    #[Validate("required|email")]
+    public $email = '';
+
+    #[Validate("required|numeric|min:0")]
+    public $top_price = '';
+
+    #[Validate("required|numeric|min:0")]
+    public $bottom_price = '';
 
     public function mount()
     {
+
         $this->getParameter();
-        $this->getData();
+    }
+
+    public function save(){
+        $c_id = $this->c_id;
+        $this->validate();
+        Alarm::create([
+            "email" => $this->email,
+            "top_price" => $this->top_price,
+            "bottom_price" => $this->bottom_price,
+            "c_id" => $c_id,
+        ]);
+        session()->flash('status', 'Pengingat berhasil dipasang');
+        $this->email="";
+        $this->top_price="";
+        $this->bottom_price="";
     }
 
     public function getParameter(){
-        $id = \Route::current()->parameter('id');
-        $this->id = $id;
+        $c_id = \Route::current()->parameter('c_id');
+        $this->c_id = $c_id;
     }
 
-    public function getData(){
-        $ticker = Http::get("https://indodax.com/api/ticker/".$this->id);
-        $this->ticker = $ticker->json();
-        $trade = Http::get("https://indodax.com/api/trades/".$this->id);
-        $this->trade = $trade->json();
-        $depth = Http::get("https://indodax.com/api/depth/".$this->id);
-        $this->depth = $depth->json();
-    }
 
     public function render()
     {
-        return view('livewire.market-detail', [
-                "id" => $this->id,
-                "ticker" => $this->ticker,
-                "trade" => $this->trade,
-                "depth" => $this->depth,
-        ])->layout("market.market-detail");
+        $this->getParameter();
+        return view('livewire.market-detail')->layout("market.market-detail");
     }
 }

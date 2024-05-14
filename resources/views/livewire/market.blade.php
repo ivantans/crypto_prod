@@ -1,7 +1,25 @@
 
-<div>
-    <button id="getdata" wire:click='getData' class="btn">-</button>
-    <div class="container">
+<div class="container-sm d-flex">
+    <div class="d-flex flex-column">
+        <img src="{{ asset("images/mclarenbos.jpg") }}" alt="" height="300">
+        <img src="{{ asset("images/rajaslot.jpg") }}" alt="" height="300">
+        <img src="{{ asset("images/mclarenbos.jpg") }}" alt="" height="300">
+        <img src="{{ asset("images/rajaslot.jpg") }}" alt="" height="300">
+        <img src="{{ asset("images/mclarenbos.jpg") }}" alt="" height="300">
+        <img src="{{ asset("images/rajaslot.jpg") }}" alt="" height="300">
+        <img src="{{ asset("images/mclarenbos.jpg") }}" alt="" height="300">
+        <img src="{{ asset("images/rajaslot.jpg") }}" alt="" height="300">
+        <audio controls autoplay loop>
+            <source src="{{ asset("images/WhatsApp Audio 2024-05-15 at 05.11.36_58d800ca.mp3") }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio >
+        <audio controls autoplay loop>
+            <source src="{{ asset("images/ambatukam.mp3") }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio >
+    </div>
+    <div class="container w-75 mt-3">
+        <h1>Coin Market</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -10,7 +28,6 @@
                     <th scope="col">Buy</th>
                     <th scope="col">percentage</th>
                     <th scope="col">More</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +37,13 @@
                         <td><img class="mb-1" src="{{ $ticker['url_logo'] }}" alt="SVG Image" width="25" height="25" loading="lazy"> {{ $ticker['name'] }}</td>
                         <td>{{ Number::format($ticker['buy']) }}</td>
                         <td class="{{ $ticker['percentage'] < 0 ? "text-danger":"text-success" }}">{{ $ticker['percentage'] }}%</td>
-                        <td><a class="btn" href="/market/{{ $ticker["id"] }}">More</a></td>
+                        <td>
+                            <form action="/market/{{ $ticker["id"] }}/{{ $ticker["name"] }}" method="post">
+                                @csrf
+                                <input type="hidden" wire:model='crypto_name' value="{{ $ticker["name"] }}">
+                                <button class="btn btn-primary" type="submit">More</button>
+                            </form>
+                        </td>
 
                     </tr>
                 @endforeach
@@ -30,7 +53,7 @@
     </div>
     
     
-    
+    <button id="getdata" wire:click='getData' class="btn">.</button>
 </div>
 
 

@@ -22,6 +22,7 @@ class Market extends Component
         $this->data = $response->json();
         $this->tickers = $this->data["tickers"];
         foreach($this->tickers as $key => $value){
+
             $tickerKey = str_replace("_", "", $key);
             if(!isset($this->data["prices_24h"][$tickerKey])){
                 $this->tickers[$key]["percentage"] = 0;
@@ -47,6 +48,7 @@ class Market extends Component
 
 
     }
+
     public function render()
     {
         return view('livewire.market', [
