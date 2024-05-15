@@ -12,7 +12,7 @@ class MarketDepth extends Component
     public $d_sell;
 
     public function mount(){
-        $c_id = $c_id = \Route::current()->parameter('c_id');
+        $c_id = \Route::current()->parameter('c_id');
         $this->c_id = $c_id;
         $this->getData();
     }

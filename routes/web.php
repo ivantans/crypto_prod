@@ -3,6 +3,7 @@
 use App\Livewire\Alarm;
 use App\Livewire\Market;
 use App\Livewire\MarketDetail;
+use App\Livewire\TechnicalAnalysis;
 use App\Mail\AlarmEmail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -24,13 +25,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/market", Market::class)->name("market.index");
 Route::post("/market/{c_id}/{c_name}", MarketDetail::class)->name("market.detail");
+Route::get("/technical-analysis", TechnicalAnalysis::class);
 Route::get("/", function(){
     return redirect()->route('market.index');
 });
 
 Route::get("/test", function(){
-    $response = Http::get("https://indodax.com/api/ticker/btcidr")->json();
-    dd($response["ticker"]["last"]);
+    return view("test.test");
 });
 
 Route::get("/mail", function(){

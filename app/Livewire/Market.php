@@ -9,12 +9,20 @@ class Market extends Component
 {
     protected $data = [];
     protected $tickers = [];
-
-
+    public $checkedItems=[];
     public function mount(){
         $this->getData();
 
         
+    }
+
+    
+    public function redirectToUrl()
+    {
+        $queryString = http_build_query(['checkedItems' => $this->checkedItems]);
+        $url = url('/technical-analysis') . '?' . $queryString;
+
+        return redirect($url);
     }
     public function getData(){
         $allHasUrlLogo = true;

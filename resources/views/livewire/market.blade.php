@@ -19,11 +19,16 @@
         </audio >
     </div>
     <div class="container w-75 mt-3">
+        @foreach ($checkedItems as $item)
+            {{ $item }}
+        @endforeach
         <h1>Coin Market</h1>
+        <button class="btn btn-primary" wire:click='redirectToUrl'>Monitor</button>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">No.</th>
+                    <th scope="col">Monitor</th>
                     <th scope="col">Nama Aset</th>
                     <th scope="col">Buy</th>
                     <th scope="col">percentage</th>
@@ -34,6 +39,7 @@
                 @foreach($tickers as $key => $ticker)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td><input class="form-check-input" type="checkbox" wire:model="checkedItems" value="{{ $ticker['name'] }}"></td>
                         <td><img class="mb-1" src="{{ $ticker['url_logo'] }}" alt="SVG Image" width="25" height="25" loading="lazy"> {{ $ticker['name'] }}</td>
                         <td>{{ Number::format($ticker['buy']) }}</td>
                         <td class="{{ $ticker['percentage'] < 0 ? "text-danger":"text-success" }}">{{ $ticker['percentage'] }}%</td>
@@ -44,7 +50,6 @@
                                 <button class="btn btn-primary" type="submit">More</button>
                             </form>
                         </td>
-
                     </tr>
                 @endforeach
             </tbody>
