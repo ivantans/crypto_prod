@@ -93,7 +93,7 @@
             } else {
                 displaySearchResults([]);
             }
-        }
+        }   
 
         function calculateChange(currentPrice, price24hAgo) {
             if (!currentPrice || !price24hAgo) {
