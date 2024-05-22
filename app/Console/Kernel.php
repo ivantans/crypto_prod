@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->job(new SendEmailJob())->everyMinute();
+        $schedule->job(new SendEmailJob())->everyThirtySeconds();
         $schedule->command("app:delete-alarm")->everyMinute();
     }
 

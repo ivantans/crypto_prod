@@ -1,6 +1,6 @@
 
 <div class="container-sm d-flex">
-    <div class="d-flex flex-column">
+    {{-- <div class="d-flex flex-column">
         <img src="{{ asset("images/mclarenbos.jpg") }}" alt="" height="300">
         <img src="{{ asset("images/rajaslot.jpg") }}" alt="" height="300">
         <img src="{{ asset("images/mclarenbos.jpg") }}" alt="" height="300">
@@ -17,7 +17,7 @@
             <source src="{{ asset("images/ambatukam.mp3") }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio >
-    </div>
+    </div> --}}
     <div class="container w-75 mt-3">
         @foreach ($checkedItems as $item)
             {{ $item }}
@@ -44,9 +44,8 @@
                         <td>{{ Number::format($ticker['buy']) }}</td>
                         <td class="{{ $ticker['percentage'] < 0 ? "text-danger":"text-success" }}">{{ $ticker['percentage'] }}%</td>
                         <td>
-                            <form action="/market/{{ $ticker["id"] }}/{{ $ticker["name"] }}" method="post">
+                            <form class="d-inline" action="/market/{{ $ticker["id"] }}/{{ $ticker["name"] }}" method="post">
                                 @csrf
-                                <input type="hidden" wire:model='crypto_name' value="{{ $ticker["name"] }}">
                                 <button class="btn btn-primary" type="submit">More</button>
                             </form>
                         </td>

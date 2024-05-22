@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 Route::get("/market", Market::class)->name("market.index");
 Route::post("/market/{c_id}/{c_name}", MarketDetail::class)->name("market.detail");
 Route::get("/technical-analysis", TechnicalAnalysis::class);
+Route::get("/search", function(){
+    return view("search.market");
+});
 Route::get("/", function(){
     return redirect()->route('market.index');
 });
