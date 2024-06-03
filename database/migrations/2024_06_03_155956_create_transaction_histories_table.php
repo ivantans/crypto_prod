@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portofolios', function (Blueprint $table) {
+        Schema::create('transaction_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained();
+            $table->string("coin_id");
             $table->float("buy_price");
             $table->float("total_coin");
-            $table->string("coin_id");
+            $table->float("current_price");
+            $table->timestamp("buy_date");
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portofolios');
+        Schema::dropIfExists('transaction_histories');
     }
 };

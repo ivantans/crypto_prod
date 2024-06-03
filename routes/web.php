@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlarmController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PortofolioController;
 use App\Mail\AlarmEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -40,11 +41,16 @@ Route::get("/v2/login", [AuthController::class, "showLoginView"]);
 Route::post("/v2/login", [AuthController::class, "login"]);
 Route::get("/v2/register", [AuthController::class, "showRegisterView"]);
 Route::post("/v2/register", [AuthController::class, "register"]);
+Route::post("/v2/logout", [AuthController::class, "logout"]);
 
-Route::post("/alarm", [AlarmController::class, "store"]);
+Route::post("/v2/portofolio", [PortofolioController::class, "store"]);
+Route::get("/v2/my-portofolio", [PortofolioController::class, "index"]);
+Route::post("/v2/my-portofolio/delete/{id}", [PortofolioController::class, "destroy"]);
+Route::post("/v2/transaction-history", [PortofolioController::class, "storeHistory"]);
+Route::post("/v2/transaction-history/delete/{id}", [PortofolioController::class, "destroyTransactionHistory"]);
 
 
-
+Route::post("/v2/alarm", [AlarmController::class, "store"]);
 Route::get("/mail", function () {
     Mail::to("ivantanjaya77@gmail.com")->send(new AlarmEmail("test"));
 });

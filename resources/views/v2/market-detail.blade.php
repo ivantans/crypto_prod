@@ -1,3 +1,8 @@
+@php
+    $coin_id = Route::current()->parameter('coin_id');
+    $coin_name = Route::current()->parameter('coin_name');
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,16 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Coin Market Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
     @include("components.layouts.navbar")
-    @php
-    $coin_id = Route::current()->parameter('coin_id');
-    $coin_name = Route::current()->parameter('coin_name');
-    @endphp
     <div>
         <div class="container mt-3">
             <h1 id="coin-name">{{ $coin_name }} Information</h1>
@@ -29,41 +31,35 @@
 
     <div class="container mt-3 d-flex justify-content-between">
         <div class="border rounded" style="width: 49%">
-            <div class="rounded-top bg-primary text-white p-3">
-                <h3>Buat Pengingat</h3>
-                <i>Kami akan mengirimkan notifikasi email saat harga menyentuh harga yang Anda inginkan</i>
+            <div class="bg-primary rounded-top px-3 py-3 text-white">
+                <h3>Portofolio anda</h3>
+                <i>Masukan coin yang anda punya</i>
             </div>
             <div class="m-3">
-                <form action="{{ url('/alarm') }}" method="POST">
+                <form action="{{ url('/v2/portofolio') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                            id="email" placeholder="name@example.com">
-                        @error('email')
+                        <label for="buy_price" class="form-label">Harga Coin beli</label>
+                        <input type="number" step="any" name="buy_price"
+                            class="form-control @error('buy_price') is-invalid @enderror" id="buy_price"
+                            placeholder="100000">
+                        @error('buy_price')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="top_price" class="form-label">Top Price</label>
-                        <input type="number" name="top_price"
-                            class="form-control @error('top_price') is-invalid @enderror" id="top_price"
+                        <label for="total_coin" class="form-label">Total coin</label>
+                        <input type="number" step="any" name="total_coin"
+                            class="form-control @error('total_coin') is-invalid @enderror" id="total_coin"
                             placeholder="Masukkan target harga">
-                        @error('top_price')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="bottom_price" class="form-label">Bottom Price</label>
-                        <input type="number" name="bottom_price"
-                            class="form-control @error('bottom_price') is-invalid @enderror" id="bottom_price"
-                            placeholder="Masukkan target harga">
-                        @error('bottom_price')
+                        @error('total_coin')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <input id="form-coin-id" type="hidden" name="coin_id" value="{{ $coin_id }}">
+                    <input id="form-coin-id" type="hidden" name="coin_name" value="{{ $coin_name }}">
                     <button class="btn btn-primary" type="submit">Submit</button>
+                    <a class="link-btn btn btn-primary" href="/v2/my-portofolio">Lihat portofolio</a>
                     @session('success')
                     <p>{{ $value }}</p>
                     @endsession
@@ -73,13 +69,100 @@
 
         <div class="border rounded" style="width: 49%">
             <div class="bg-primary rounded-top px-3 py-3 text-white">
-                <h3>Portofolio anda</h3>
+                <h3>History Portofolio</h3>
+                <i>Masukan coin yang pernah diperjual belikan</i>
             </div>
-            {{-- FORM --}}
-            
+            <div class="m-3">
+                <form action="{{ url('/v2/transaction-history') }}" method="POST">
+                    @csrf
+                    <input id="form-coin-id" type="hidden" name="coin_id" value="{{ $coin_id }}">
+                    <div class="mb-1">
+                        <label for="buy_price" class="form-label">Harga Coin beli</label>
+                        <input type="number" step="any" name="buy_price"
+                            class="form-control @error('buy_price') is-invalid @enderror" id="buy_price"
+                            placeholder="100000">
+                        @error('buy_price')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-1">
+                        <label for="total_coin" class="form-label">Total coin</label>
+                        <input type="number" step="any" name="total_coin"
+                            class="form-control @error('total_coin') is-invalid @enderror" id="total_coin"
+                            placeholder="Masukan total coin yang anda beli">
+                        @error('total_coin')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-1">
+                        <label for="current_price" class="form-label">Harga Jual</label>
+                        <input type="number" step="any" name="current_price"
+                            class="form-control @error('current_price') is-invalid @enderror" id="current_price"
+                            placeholder="Masukan harga jual anda">
+                        @error('current_price')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="buy_date" class="form-label">Tanggal beli (opsional)</label>
+                        <input type="date" step="any" name="buy_date"
+                            class="form-control @error('buy_date') is-invalid @enderror" id="buy_date">
+                        @error('buy_date')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <a class="link-btn btn btn-primary" href="/v2/my-portofolio">Lihat portofolio</a>
+                    @session('success')
+                    <p>{{ $value }}</p>
+                    @endsession
+                </form>
+            </div>
         </div>
     </div>
+    
+    <div class="container">
 
+        <div class="mt-3 border rounded">
+            <div class="rounded-top bg-primary text-white p-3">
+                <h3>Buat pengingat</h3>
+                <i>Kami akan mengirimkan notifikasi email saat harga menyentuh harga yang anda inginkan</i>
+            </div>
+            <div class="p-3">
+                <form wire:submit='save'>
+                    <div class="">
+                        <input wire:model='email' type="text" class="form-control" id="email" placeholder="Email anda">
+                    </div>
+                    <div class="mt-1">
+                        @error('email') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="mt-3">
+                        <input wire:model='top_price' type="number" class="form-control" id="top_price"
+                            placeholder="Target harga atas dalam IDR">
+                    </div>
+                    <div class="mt-1">
+                        @error('top_price') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="mt-3">
+                        <input wire:model='bottom_price' type="number" class="form-control" id="bottom_price"
+                            placeholder="Target harga bawah dalam IDR">
+                    </div>
+                    <div class="mt-1">
+                        @error('bottom_price') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3 fs-5">Pasang pengingat</button>
+                    @session('status')
+                    <div class="mt-1 text-success fw-bold">
+                        <p>{{ $value }}</p>
+                    </div>
+                    @endsession
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="container mt-3">
         <div class="mt-3 border rounded">
             <div class="rounded-top bg-primary text-white p-3">

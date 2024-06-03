@@ -38,6 +38,7 @@
                     <tr>
                         <th>Symbol</th>
                         <th>Current Price (IDR)</th>
+                        <th>Price 24h</th>
                         <th>Change (%)</th>
                         <th>Action</th>
                     </tr>
@@ -82,6 +83,7 @@
                     const row = document.createElement('tr');
                     row.innerHTML = `<td>${coin.symbol.toUpperCase()}</td>
                                      <td>IDR ${coin.currentPrice.toLocaleString()}</td>
+                                     <td>IDR ${coin.price24hAgo.toLocaleString()}</td>
                                      <td class="${changeClass}">${change}%</td>
                                      <td><button class="btn btn-danger btn-sm" onclick="removeFromWatchlist('${coin.symbol}')">Remove</button></td>`;
                     watchlistBody.appendChild(row);

@@ -102,7 +102,7 @@
                                      <td>IDR ${coin.currentPrice.toLocaleString()}</td>
                                      <td>IDR ${coin.price24hAgo.toLocaleString()}</td>
                                      <td class="${changeClass}">${change}%</td>
-                                     <td><button class="btn btn-info btn-sm" onclick="goToCoinDetail('${coinId}', '${coin.name}')">Detail</button></td>`;
+                                     <td><button class="btn btn-success btn-sm" onclick="goToCoinDetail('${coinId}', '${coin.name}')">Detail</button></td>`;
                     searchResultsBody.appendChild(row);
                 });
             }

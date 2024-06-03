@@ -14,10 +14,19 @@
                     <a class="nav-link" href="/v2/watchlist">Watchlist</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/v2/my-portofolio">Portofolio</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/v2/login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/v2/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <form class="d-inline" method="post" action="/v2/logout">
+                        @csrf
+                        <button class="link-btn btn" type="submit">Logout</button>
+                    </form>
                 </li>
             </ul>
         </div>

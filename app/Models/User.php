@@ -44,7 +44,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function Portofolios(){
+    public function portofolios(){
         return $this->hasMany(Portofolio::class, "user_id");
+    }
+
+    public function TransactionHistory(){
+        return $this->hasMany(TransactionHistory::class, "user_id");
     }
 }
