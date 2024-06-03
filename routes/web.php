@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlarmController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PortofolioController;
+use App\Http\Controllers\TradingViewController;
 use App\Mail\AlarmEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,10 @@ Route::get("/v2/my-portofolio", [PortofolioController::class, "index"]);
 Route::post("/v2/my-portofolio/delete/{id}", [PortofolioController::class, "destroy"]);
 Route::post("/v2/transaction-history", [PortofolioController::class, "storeHistory"]);
 Route::post("/v2/transaction-history/delete/{id}", [PortofolioController::class, "destroyTransactionHistory"]);
-
+Route::get("/v2/tradingview", [TradingViewController::class, "index"]);
+Route::get("/test", function(){
+    return view("v2.test");
+});
 
 Route::post("/v2/alarm", [AlarmController::class, "store"]);
 Route::get("/mail", function () {

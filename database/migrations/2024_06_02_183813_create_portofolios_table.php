@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained();
-            $table->float("buy_price");
-            $table->float("total_coin");
+            $table->double("buy_price");
+            $table->double("total_coin");
             $table->string("coin_id");
             $table->timestamps();
         });

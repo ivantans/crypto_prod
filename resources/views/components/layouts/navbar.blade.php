@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
     <div class="container">
-        <p class="fw-bold">KELOMPOK 3</p>
+        <p class="text-center fw-bold">KELOMPOK 3</p>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,6 +15,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/v2/my-portofolio">Portofolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/v2/tradingview">Tradingview</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/v2/login">Login</a>

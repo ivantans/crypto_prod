@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId("user_id")->constrained();
             $table->string("coin_id");
-            $table->float("buy_price");
-            $table->float("total_coin");
-            $table->float("current_price");
+            $table->double("buy_price");
+            $table->double("total_coin");
+            $table->double("current_price");
             $table->timestamp("buy_date");
             $table->timestamps();
         });
