@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,12 +19,12 @@
     @include('components.layouts.navbar')
 
     <div class="container">
-        <h1 class="text-center mb-4">Crypto Market</h1>
+        <h1 class="text-center mb-4 mt-4 "><strong>Crypto Market</strong></h1>
         <div class="row mb-4">
             <div class="col-md-8 offset-md-2">
                 <div class="input-group">
                     <input type="text" id="searchInput" class="form-control" placeholder="Search for a coin..."
-                        oninput="filterCoins()">
+                        oninput="filterCoins()" style="margin-right: 10px;">
                     <div class="input-group-append">
                         <button class="btn btn-primary" onclick="goToWatchlist()">Watchlist</button>
                     </div>

@@ -18,12 +18,12 @@
     @include('components.layouts.navbar')
 
     <div class="container">
-        <h1 class="text-center mb-4">Watchlist</h1>
+        <h1 class="text-center mb-4 mt-4 "><strong>Watchlist</strong></h1>
         <div class="row mb-4">
             <div class="col-md-8 offset-md-2">
                 <div class="input-group">
                     <input type="text" id="searchInput" class="form-control" placeholder="Search in watchlist..."
-                        oninput="filterWatchlist()">
+                        oninput="filterWatchlist()" style="margin-right: 10px;">
                     <div class="input-group-append">
                         <button class="btn btn-primary" onclick="goBack()">Back</button>
                     </div>
@@ -32,7 +32,6 @@
         </div>
 
         <div id="watchlistContainer">
-            <h2 class="text-center">Your Watchlist</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -75,7 +74,7 @@
             const watchlistBody = document.getElementById('watchlistBody');
             watchlistBody.innerHTML = '';
             if (coins.length === 0) {
-                watchlistBody.innerHTML = '<tr><td colspan="4" class="text-center">No coins in your watchlist</td></tr>';
+                watchlistBody.innerHTML = '<tr><td colspan="5" class="text-center">No coins in your watchlist</td></tr>';
             } else {
                 coins.forEach(coin => {
                     const change = calculateChange(coin.currentPrice, coin.price24hAgo);
@@ -113,7 +112,7 @@
         }
 
         function goBack() {
-            window.location.href = 'index.html';
+            window.location.href = '/v2/market';
         }
 
         // Initial load

@@ -517,6 +517,9 @@
             right: 10px;
             z-index: 1;
         }
+        body {
+            font-family: Arial, sans-serif;
+        }
     </style>
 </head>
 
@@ -524,7 +527,7 @@
     @include("components.layouts.navbar")
 
     <div class="container mt-3">
-        <h1>My TradingView Widgets</h1>
+        <h2 class="text-center mb-4 mt-4 "><strong>My TradingView Widgets</strong></h2>
         <div id="tradingview-widgets" class="row">
             @foreach ($portofolios as $portofolio)
             @php

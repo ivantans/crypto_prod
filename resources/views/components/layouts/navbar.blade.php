@@ -1,12 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
     <div class="container">
-        <p class="text-center fw-bold">KELOMPOK 3</p>
+        <!-- Bagian judul kelompok di sisi kiri -->
+        <div class="navbar-header">
+            <p class="mb-0 fw-bold">KELOMPOK 3</p>
+        </div>
+
+        <!-- Toggler untuk responsive menu -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+
+        <!-- Bagian menu navigasi utama -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/v2/market">Market</a>
                 </li>
@@ -19,20 +26,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/v2/tradingview">Tradingview</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/v2/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/v2/register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <form class="d-inline" method="post" action="/v2/logout">
-                        @csrf
-                        <button class="link-btn btn" type="submit">Logout</button>
-                    </form>
-                </li>
             </ul>
         </div>
+
+        <!-- Bagian autentikasi di sisi kanan -->
+        <ul class="navbar-nav">
+            @auth
+            <li class="nav-item">
+                <form class="d-inline" method="post" action="/v2/logout">
+                    @csrf
+                    <button class="btn btn-secondary" type="submit">Logout</button>
+                </form>
+            </li>
+            @else
+            <li class="nav-item">
+                <a class="btn btn-secondary" href="/v2/login">Login</a>
+            </li>
+            @endauth
+        </ul>
     </div>
 </nav>
 

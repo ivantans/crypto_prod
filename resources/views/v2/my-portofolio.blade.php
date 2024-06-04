@@ -8,13 +8,18 @@
     <title>My Portofolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 
 <body>
     @include("components.layouts.navbar")
     <div class="container mt-3">
-        <h1>My Portofolio</h1>
-        <table class="table table-bordered">
+        <h2 class="text-center mb-4 mt-4 "><strong>My Portofolio</strong></h2>yy
+        <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th>Coin</th>
@@ -62,14 +67,14 @@
             </tbody>
         </table>
         <div id="total-assets-portofolio" class="mt-3">
-            <h3>Total Value of All Assets: <span id="total-value-all-assets"></span></h3>
-            <h3>Total Invested: <span id="total-invested"></span></h3>
-            <h3>Total Profit/Loss: <span id="total-profit-loss"></span></h3>
-            <h3>Total Percentage: <span id="total-percentage"></span></h3>
+            <h6>Total Value of All Assets   : <span id="total-value-all-assets"></span></h6>
+            <h6>Total Invested              : <span id="total-invested"></span></h6>
+            <h6>Total Profit/Loss: <span id="total-profit-loss"></span></h6>
+            <h6>Total Percentage: <span id="total-percentage"></span></h6>
         </div>
 
-        <h1>My Transaction Histories</h1>
-        <table class="table table-bordered">
+        <h2 class="text-center mb-4 mt-4 "><strong>My Transaction Histories</strong></h2>
+        <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th>Coin</th>
@@ -107,10 +112,10 @@
             </tbody>
         </table>
         <div id="total-assets-transaction-history" class="mt-3">
-            <h3>Total Value of All Assets: <span id="total-value-all-assets-transaction-history"></span></h3>
-            <h3>Total Invested: <span id="total-invested-transaction-history"></span></h3>
-            <h3>Total Profit/Loss: <span id="total-profit-loss-transaction-history"></span></h3>
-            <h3>Total Percentage: <span id="total-percentage-transaction-history"></span></h3>
+            <h6>Total Value of All Assets: <span id="total-value-all-assets-transaction-history"></span></h6>
+            <h6>Total Invested: <span id="total-invested-transaction-history"></span></h6>
+            <h6>Total Profit/Loss: <span id="total-profit-loss-transaction-history"></span></h6>
+            <h6>Total Percentage: <span id="total-percentage-transaction-history"></span></h6>
         </div>
     </div>
 
