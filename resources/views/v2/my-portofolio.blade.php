@@ -18,7 +18,7 @@
 <body>
     @include("components.layouts.navbar")
     <div class="container mt-3">
-        <h2 class="text-center mb-4 mt-4 "><strong>My Portofolio</strong></h2>yy
+        <h2 class="text-center mb-4 mt-4 "><strong>My Portofolio</strong></h2>
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
