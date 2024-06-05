@@ -318,7 +318,7 @@
 
         async function fetchNews(coin_name) {
             try {
-                const response = await fetch(`https://cryptonews-api.com/api/v1?tickers=${coin_name}&items=3&token=p8dhsllmrxd7jmrapw0l3cvvrozqleawo1gucqy9`);
+                const response = await fetch(`https://cryptonews-api.com/api/v1?tickers=${coin_name}&items=3&token=qq54gfmn8wbly4l74uepmqnv9vptrlno4sd6xgyf`);
                 const data = await response.json();
                 populateNewsContainer(data.data);
             } catch (error) {

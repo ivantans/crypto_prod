@@ -641,6 +641,7 @@
 
     <script>
         function deleteWidget(button) {
+            console.log(button);
             const widgetContainer = button.closest('.widget-container');
             widgetContainer.remove();
         }

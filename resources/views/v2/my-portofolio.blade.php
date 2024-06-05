@@ -128,6 +128,7 @@
             };
 
             const calculateValues = async (row) => {
+                console.log(row);
                 const coinId = row.querySelector('.current-price').dataset.coin;
                 const buyPrice = parseFloat(row.children[1].textContent);
                 const totalCoin = parseFloat(row.children[2].textContent);
